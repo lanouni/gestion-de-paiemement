@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-3">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="title"><h3> les niveaux</h3></div>
+        <app-ajout-niveau></app-ajout-niveau>
+        <ul>
+          <li class="list-group-item" style="margin-top: 5px;;" (load)="reloadData()" *ngFor="let niveau of niveaux | async">
+            <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="matiere/{{ niveau.niveau }}" routerLink="matiere/{{ niveau.niveau }}"  role="tab" aria-controls="v-pills-home" aria-selected="true">{{ niveau.niveau}} </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-9">
+      <div class="tab-content" id="v-pills-tabContent">
+      <app-etudiant></app-etudiant>
+      </div>
+    </div>
+  </div>

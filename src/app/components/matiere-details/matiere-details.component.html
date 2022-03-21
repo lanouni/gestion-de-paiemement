@@ -1,0 +1,77 @@
+<div class="table">
+    <div class="title">info matiere</div>
+  <table class="table" >
+      <thead>
+        <tr>
+          <th scope="col">nom matiere </th>
+          <th scope="col">prix</th>
+          <th scope="col">niveau </th>
+          <th>modifier ou supprimer</th>
+        </tr>
+      </thead>
+      <tbody (load)="reloadData()"  *ngFor="let matiere of matiere$ | async">
+        <tr>
+            <td >
+                {{matiere.nom_matiere}}
+            </td>
+            <td>
+                {{matiere.prix}}
+            </td>
+            <td>
+                {{matiere.niveau}}
+            </td>
+            <td>
+                <a href="update" routerLink="update"><button class="btn btn-success">modifier</button></a>
+                <button class="btn btn-danger" type="submit" style="margin-left: 5px;;" (click)="deleteMatiere()">supprimer</button>
+            </td>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <div class="table">
+        <div class="title">liste etudiant</div>
+      <table class="table" >
+          <thead>
+            <tr>
+              <th scope="col">nom </th>
+              <th scope="col">pernom</th>
+              <th scope="col">ville</th>
+              <th scope="col">phone 1</th>
+              <th scope="col">phone 2</th>
+              <th scope="col">date inscription</th>
+              <th scope="col">information</th>
+            </tr>
+          </thead>
+          <tbody (load)="reloadDataEtudiant()" *ngFor="let etudiant of etudiant$ | async">
+            <tr>
+                <td >
+                    {{etudiant.nom}}
+                </td>
+                <td>
+                    {{etudiant.prenom}}
+                </td>
+                <td>
+                    {{etudiant.ville}}
+                </td>
+                <td>
+                    {{etudiant.phone_1}}
+                </td>
+                <td>
+                    {{etudiant.phone_2}}
+                </td>
+                <td>
+                    {{etudiant.date_insc}}
+                </td>
+                <td>
+                  <a href="">
+                    <button class="btn btn-outline-success">
+                      details
+                    </button>
+                  </a>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>

@@ -1,0 +1,7 @@
+<div style="margin-top: 30px;text-align: center;">
+  <form #AjoutNiveauForm=ngForm (ngSubmit)="onSubmit()">
+    <div class="alert alert-danger" [hidden]="!error">niveau existe</div>
+    <input type="nom" class="form-control" name="niveau" placeholder="nom niveau" style="width: 70%;margin: auto ;margin-bottom: 5px;" [(ngModel)]="Form.niveau" required >
+  <button  type="submit" class="btn btn-primary" [disabled]="!AjoutNiveauForm.valid">ajouter</button>
+  </form>
+</div>

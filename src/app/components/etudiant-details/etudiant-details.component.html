@@ -1,0 +1,95 @@
+<div class="col-9" style="margin: auto  ;">
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="table">
+        <div class="title">liste etudiant</div>
+      <table class="table" >
+          <thead>
+            <tr>
+              <th scope="col">nom </th>
+              <th scope="col">pernom</th>
+              <th scope="col">ville</th>
+              <th scope="col">phone 1</th>
+              <th scope="col">phone 2</th>
+              <th scope="col">date inscription</th>
+              <th scope="col">modifier</th>
+            </tr>
+          </thead>
+          <tbody (load)="reloadData()" *ngFor="let etud of etud$ | async">
+            <tr>
+                <td >
+                    {{etud.nom}}
+                </td>
+                <td>
+                    {{etud.prenom}}
+                </td>
+                <td>
+                    {{etud.ville}}
+                </td>
+                <td>
+                    {{etud.phone_1}}
+                </td>
+                <td>
+                    {{etud.phone_2}}
+                </td>
+                <td>
+                    {{etud.date_insc}}
+                </td>
+                <td>
+                  <a href="update" routerLink="update">
+                    <button class="btn btn-success">modifier</button>
+                  </a>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="matiere">
+        <h3>liste des matieres inscrit</h3>
+        <div>
+            <table class="table" style="width:50%; border-collapse: collapse;">
+                <thead class="thead-dark" >
+                  <tr>
+                    <th scope="col">matiere</th>
+                    <th scope="col">information</th>
+                  </tr>
+                </thead>
+
+
+
+                
+                <tbody (load)="reloadDataEtudiant()"  *ngFor="let etudiant of etudiant$ | async" >
+                  <tr>
+                    <td >
+                        {{etudiant.nom_matiere}}
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteMatiere(etudiant.nom_matiere)">supprimer</button>
+                    </td>
+                  </tr>
+
+
+
+
+
+                </tbody>
+              </table>
+              <div style="margin-top:10px ; ">
+                <form #InscriptionForm=ngForm (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">matiere</label>
+                      <select [(ngModel)]="Form.nom_matiere" name="nom_matiere">
+                            <option value="null"></option>
+                            <option (load)="reloadDataMatiere()" *ngFor="let matiere of matieres | async">
+                                {{ matiere.nom_matiere}}
+                              </option>
+                          
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [hidden]="!InscriptionForm.valid">ajouter</button>
+                  </form>
+            </div>
+              
+        </div>
+    </div>
+  </div>

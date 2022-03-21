@@ -1,0 +1,59 @@
+<div class="all">
+    <form  #PaiementForm=ngForm (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <div class="form-group">
+       
+            <div class="form-group col-md-6" >
+              <label for="inputState">niveau</label>
+              <select id="inputState" class="form-control" [(ngModel)]="niv" name="niv" (ngModelChange)="reloadDataMatiere()" required>
+                <option value="null">     </option>
+                <option value="{{ niveau.niveau }}" (load)="reloadData()" *ngFor="let niveau of niveaux | async">
+                  {{ niveau.niveau}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputState">matiere</label>
+                <select id="inputState" class="form-control" [(ngModel)]="mat"  name="mat" (ngModelChange)="reloadEtudiant()" required>
+                    <option value="null">     </option>
+                    <option value="{{ matiere.nom_matiere }}" (load)="reloadDataMatiere()" *ngFor="let matiere of matieres | async" required>
+                      {{ matiere.nom_matiere}}
+                    </option>
+                  </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputState">nom</label>
+                <select id="inputState" class="form-control" [(ngModel)]="nom"  name="nom" (ngModelChange)="reloadEtudiantNom()" required>
+                    <option value="null">     </option>
+                    <option value="{{ etudiant.nom }}" (load)="reloadEtudiant()" *ngFor="let etudiant of etudiants | async">
+                      {{ etudiant.nom}}
+                    </option>
+                  </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputState">prenom</label>
+                <select id="inputState" class="form-control" [(ngModel)]="prenom"  name="prenom" (ngModelChange)="reloadPaiement()" required>
+                    <option value="null">     </option>
+                    <option value="{{ et.prenom }}" (load)="reloadEtudiantNom()" *ngFor="let et of etudian | async">
+                      {{ et.prenom}}
+                    </option>
+                  </select>
+              </div>
+        </div>
+             <div class="form-group col-md-6 ">
+            <label for="inputState">date paiement</label>
+            <input type="date" name="date_p" [(ngModel)]="Form.date_p" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group col-md-6 ">
+          <label for="inputState">mois</label>
+          <input type="number" min="1" max="12" name="mois" [(ngModel)]="Form.mois" class="form-control" required>
+        </div>
+       
+        <button type="submit" class="btn btn-primary" [disabled]="!PaiementForm.valid">ajouter</button>
+        
+      </form>
+      <a href="paiement/liste" routerLink="liste">
+        <button class="btn btn-success" style="margin-top: 5px;">liste paiement</button>
+      </a>
+</div>

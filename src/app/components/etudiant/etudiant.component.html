@@ -1,0 +1,38 @@
+<div class="table">
+  <div class="title">liste etudiant</div>
+<table class="table" >
+    <thead>
+      <tr>
+        <th scope="col">nom </th>
+        <th scope="col">pernom</th>
+        <th scope="col">ville</th>
+        <th scope="col">phone 1</th>
+        <th scope="col">phone 2</th>
+        <th scope="col">date inscription</th>
+      </tr>
+    </thead>
+    <tbody (load)="reloadData()" *ngFor="let etudiant of etudiant$ | async">
+      <tr>
+          <td >
+              {{etudiant.nom}}
+          </td>
+          <td>
+              {{etudiant.prenom}}
+          </td>
+          <td>
+              {{etudiant.ville}}
+          </td>
+          <td>
+              {{etudiant.phone_1}}
+          </td>
+          <td>
+              {{etudiant.phone_2}}
+          </td>
+          <td>
+              {{etudiant.date_insc}}
+          </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

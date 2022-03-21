@@ -1,0 +1,79 @@
+<div class="form">
+    <form #AjoutEtudiantForm=ngForm (ngSubmit)="onSubmit()">
+      <div class="alert alert-danger" [hidden]="!error">veuiller verifier les donnees inserer</div>
+        <div class="form-group row">
+          <label  class="col-sm-2 col-form-label">nom</label>
+          <div class="col-sm-10">
+            <input type="text" name="nom" class="form-control" [(ngModel)]="Form.nom" required placeholder="au moin 2 caractere">
+          </div>
+        </div>
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">prenom</label>
+            <div class="col-sm-10">
+              <input type="text" name="prenom" class="form-control" [(ngModel)]="Form.prenom" required placeholder="au moin 2 caractere">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">ville</label>
+            <div class="col-sm-10">
+              <input type="text" name="ville" class="form-control" [(ngModel)]="Form.ville" required placeholder="au moin 2 caractere">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">phone 1</label>
+            <div class="col-sm-10">
+              <input type="number" name="phone_1" class="form-control" [(ngModel)]="Form.phone_1" required placeholder="10 nombre">
+            </div>
+          </div>
+        <div class="form-group row">
+          <label  class="col-sm-2 col-form-label">phone2</label>
+          <div class="col-sm-10">
+            <input type="number" name="phone_2" class="form-control"  [(ngModel)]="Form.phone_2" placeholder="10 nombre ">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label  class="col-sm-2 col-form-label">date inscription</label>
+          <div class="col-sm-10">
+            <input type="date" name="date_insc" class="form-control"  min="2020" [(ngModel)]="Form.date_insc" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label  class="col-sm-2 col-form-label">niveau</label>
+
+          <div class="col-sm-10">
+            <select [(ngModel)]="niv" name="niv" (ngModelChange)="reloadDataMatiere($event)">
+              <option value="null">     </option>
+              <option value="{{ niveau.niveau }}" (load)="reloadData()" *ngFor="let niveau of niveaux | async">
+                {{ niveau.niveau}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+      <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">matiere</label>
+        <div class="col-sm-10">
+          <select [(ngModel)]="Form.nom_matiere" name="nom_matiere">
+            <option value="null">     </option>
+            <option (load)="reloadDataMatiere(niv)" *ngFor="let matiere of matieres | async">
+              {{ matiere.nom_matiere}}
+            </option>
+          </select>
+        </div>
+      </div>
+        
+        
+        <div class="form-group row" style="text-align: center;">
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary"  [disabled]="!AjoutEtudiantForm.valid">ajouter</button>
+          </div>
+        </div>
+      </form>
+</div>

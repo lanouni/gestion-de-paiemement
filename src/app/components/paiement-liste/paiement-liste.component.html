@@ -1,0 +1,61 @@
+<div style="width: 70%;margin: auto;">
+    <div class="form-row">
+       
+        <div class="form-group col-md-4" >
+          <label for="inputState">niveau</label>
+          <select id="inputState" class="form-control" [(ngModel)]="niv" name="niv" (ngModelChange)="reloadDataMatiere()">
+            <option value="null">     </option>
+            <option value="{{ niveau.niveau }}" (load)="reloadData()" *ngFor="let niveau of niveaux | async">
+              {{ niveau.niveau}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">matiere</label>
+            <select id="inputState" class="form-control" [(ngModel)]="mat"  name="mat" (ngModelChange)="reloadEtudiant()">
+                <option value="null">     </option>
+                <option value="{{ matiere.nom_matiere }}" (load)="reloadDataMatiere()" *ngFor="let matiere of matieres | async">
+                  {{ matiere.nom_matiere}}
+                </option>
+              </select>
+          </div>
+          <div>
+            <label for="inputState">nom</label>
+            <select id="inputState" class="form-control" [(ngModel)]="nom"  name="nom" (ngModelChange)="reloadEtudiantNom()">
+                <option value="null">     </option>
+                <option value="{{ etudiant.nom }}" (load)="reloadEtudiant()" *ngFor="let etudiant of etudiants | async">
+                  {{ etudiant.nom}}
+                </option>
+              </select>
+          </div>
+          <div >
+            <label for="inputState">prenom</label>
+            <select id="inputState" class="form-control" [(ngModel)]="prenom"  name="prenom" (ngModelChange)="reloadPaiement()">
+                <option value="null">     </option>
+                <option value="{{ et.prenom }}" (load)="reloadEtudiantNom()" *ngFor="let et of etudian | async">
+                  {{ et.prenom}}
+                </option>
+              </select>
+          </div>
+    </div>
+    <div>
+         <div class="alert alert-danger" [hidden]="!error">etu</div> 
+        <table class="table"  *ngIf="error == null && prenom!=null" >
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">niveau</th>
+                <th scope="col">matiere</th>
+                <th scope="col">date paiement</th>
+              </tr>
+            </thead>
+            <tbody (load)="reloadPaiement()" *ngFor="let paiement of paiements$ | async">
+                <tr>
+                    <td>{{ paiement.niveau }}</td>
+                    <td>{{paiement.nom_matiere}}</td>
+                    <td>{{paiement.date_p}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

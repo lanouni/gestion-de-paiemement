@@ -1,0 +1,47 @@
+<div class="all" >
+    <div class="title">info matiere</div>
+    <table class="table" >
+        <thead>
+          <tr>
+            <th scope="col">nom matiere </th>
+            <th scope="col">prix</th>
+            <th scope="col">niveau </th>
+          </tr>
+        </thead>
+        <tbody (load)="reloadData()" *ngFor="let matiere of matiere$ | async">
+          <tr>
+              <td >
+                  {{matiere.nom_matiere}}
+              </td>
+              <td>
+                  {{matiere.prix}}
+              </td>
+              <td>
+                  {{matiere.niveau}}
+              </td>
+        </tbody>
+      </table>
+
+    <div class="update"(load)="reloadData()" *ngFor="let matiere of matiere$ | async" >
+      <form #UpdateMatiereForm = ngForm (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="exampleInputEmail1">nom matiere</label>
+          <input type="text" name="nom_matiere"   class="form-control"id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="matiere$.nom_matiere">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">prix</label>
+          <input type="number" name="prix" min="50" class="form-control" id="exampleInputPassword1" [(ngModel)]="matiere$.prix">
+        </div>
+        <div class="form-group">
+            <label class="label"> niveau</label>
+            <select name="id_niveau" style="width:60%;"    [(ngModel)]="id_niveau" >
+                <option value="{{matiere.id_niveau}}"></option>
+                <option class="list-group-item" name="niveau" [value]="niveau.id_niveau " style="margin-top: 5px;;" (load)="reloadDataNieau()" *ngFor="let niveau of niveaux | async">
+                 {{ niveau.niveau}} 
+                </option>     
+            </select>   
+        </div>
+        <button type="submit" name="submit" (click)="onSubmit()" class="btn btn-primary">modifier</button>
+      </form>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<select name="niveau" style="width:60%;" >
+    <option value="null"></option>
+    <option class="list-group-item" name="niveau" [value]="niveau.niveau " style="margin-top: 5px;;" (load)="reloadData()" *ngFor="let niveau of niveaux | async">
+     {{ niveau.niveau}} 
+    </option>     
+</select>
+    
